@@ -1,0 +1,16 @@
+version: "3.3"
+
+services:
+  php:
+    container_name: php
+    build:
+      context: ./components/php
+      args:
+        - PHP_VERSION=${PHP_VERSION}
+    ports:
+      - "9000:9000"
+    volumes:
+      - ./components/php/${PHP_VERSION}/php.ini:/usr/local/etc/php/php.ini
+      - ./components/php/${PHP_VERSION}/www.conf:/usr/local/etc/php/php-fpm.d/www.conf
+      - ${WEB_ROOT_PATH}:/var/www
+

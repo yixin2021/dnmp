@@ -4,7 +4,7 @@ FROM php:${PHP_VERSION}-fpm-alpine
 # 配置阿里云镜像
 RUN sed -i 's/dl-cdn.alpinelinux.org/mirrors.aliyun.com/g' /etc/apk/repositories
 
-# 添加常用扩展
+# 添加依赖
 RUN apk --update add \
          git \
          autoconf \
@@ -63,6 +63,15 @@ RUN if [ ${INSTALL_SWOOLE} = true ]; then \
 ARG INSTALL_PCNTL=false
 RUN if [ ${INSTALL_PCNTL} = true ]; then \
     docker-php-ext-install pcntl \
+;fi
+
+# 安装xdebug
+ARG INSTALL_XDEBUG=false
+ARG XDEBUG_VERSION
+RUN if [ ${INSTALL_XDEBUG} = true ]; then \
+    pecl install xdebug-${XDEBUG_VERSION} \
+    && rm -rf /tmp/pear \
+    && docker-php-ext-enable xdebug \
 ;fi
 
 # 安装composer

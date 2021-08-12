@@ -2,3 +2,4 @@
 .env
 www/
 .DS_Store
+components/nginx/conf.d

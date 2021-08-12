@@ -12,7 +12,7 @@ services:
     depends_on:
       - php
     volumes:
-      - ./components/nginx/default.conf:/etc/nginx/default.conf
+      - ./components/nginx/conf.d/default.conf:/etc/nginx/default.conf
       - ./components/nginx/conf.d:/etc/nginx/conf.d
       - ${WEB_ROOT_PATH}:/var/www
       - ${WEB_LOGS}:/var/logs
@@ -27,6 +27,8 @@ services:
         - INSTALL_SWOOLE=${INSTALL_SWOOLE}
         - SWOOLE_VERSION=${SWOOLE_VERSION}
         - INSTALL_PCNTL=${INSTALL_PCNTL}
+        - INSTALL_XDEBUG=${INSTALL_XDEBUG}
+        - XDEBUG_VERSION=${XDEBUG_VERSION}
     ports:
       - "9000:9000"
       - "8080:8080"

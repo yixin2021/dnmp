@@ -14,23 +14,4 @@ server {
     location / {
         try_files $uri $uri/ /index.php?$query_string; # 这一句是laravel部署必须的，将index.php隐藏掉
     }
-    if (!-d $request_filename)
-    {
-        rewrite ^/(.+)/$ /$1 permanent;
-    }
-    # 去除index action
-    if ($request_uri ~* index/?$)
-    {
-        rewrite ^/(.*)/index/?$ /$1 permanent;
-    }
-    # 根据laravel规则进行url重写
-    if (!-e $request_filename)
-    {
-          rewrite ^/(.*)$ /index.php?/$1 last;
-          break;
-    }
-    location = /50x.html {
-          root   html;
-    }
-
 }

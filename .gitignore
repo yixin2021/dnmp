@@ -1,3 +1,4 @@
 .idea/
 .env
 www/
+.DS_Store

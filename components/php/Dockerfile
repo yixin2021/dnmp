@@ -6,6 +6,7 @@ RUN sed -i 's/dl-cdn.alpinelinux.org/mirrors.aliyun.com/g' /etc/apk/repositories
 
 # 添加常用扩展
 RUN apk --update add \
+         git \
          autoconf \
          gcc  \
          g++  \

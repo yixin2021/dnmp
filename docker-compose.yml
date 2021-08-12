@@ -29,6 +29,7 @@ services:
         - INSTALL_PCNTL=${INSTALL_PCNTL}
     ports:
       - "9000:9000"
+      - "8080:8080"
     volumes:
       - ./components/php/${PHP_VERSION}/php.ini:/usr/local/etc/php/php.ini
       - ./components/php/${PHP_VERSION}/www.conf:/usr/local/etc/php/php-fpm.d/www.conf

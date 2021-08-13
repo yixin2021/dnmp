@@ -3,6 +3,8 @@ FROM php:${PHP_VERSION}-fpm-alpine
 
 # 配置阿里云镜像
 RUN sed -i 's/dl-cdn.alpinelinux.org/mirrors.aliyun.com/g' /etc/apk/repositories
+# 设置时区
+#RUN cp /usr/share/zoneinfo/Asia/Shanghai /etc/localtime && echo 'Asia/Shanghai'>/etc/timezone
 
 # 添加依赖
 RUN apk --update add \

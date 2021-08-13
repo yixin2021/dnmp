@@ -32,8 +32,23 @@ services:
     ports:
       - "9000:9000"
       - "8080:8080"
+      - "9501:9501"
     volumes:
       - ./components/php/${PHP_VERSION}/php.ini:/usr/local/etc/php/php.ini
       - ./components/php/${PHP_VERSION}/www.conf:/usr/local/etc/php/php-fpm.d/www.conf
       - ${WEB_ROOT_PATH}:/var/www
+  mysql:
+    container_name: mysql
+    build:
+      context: ./components/mysql
+      args:
+        - MYSQL_VERSION=${MYSQL_VERSION}
+    ports:
+      - "3306:3306"
+    volumes:
+      - ./data/mysql:/var/lib/mysql
+      - ./components/mysql/mysql.cnf:/etc/mysql/conf.d/my.cnf
+    restart: always
+    environment:
+      - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}
 
